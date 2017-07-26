@@ -1,26 +1,5 @@
 #!/bin/bash
 
-STOCK_FILE=./stock.txt
-
-# *********************************************************************
-# Get all the history data of $1, include max_value, min_value, 
-# open_value and close_value
-# *********************************************************************
-
-get_history_data(){
-	mkdir $1
-	curl http://quotes.money.163.com/service/chddata.html?code=$1 | tee $1/${1}_temp.txt
-	tac $1/${1}_temp.txt | tee $1/${1}_euc.txt
-
-	# Change the format of the data file from web
-	iconv -f euc-cn -t utf-8 $1/${1}_euc.txt > $1/${1}_orig.txt
-
-	# Delete the last line
-	sed -i '$d' $1/${1}_orig.txt
-	rm -f $1/${1}_euc.txt $1/${1}_temp.txt
-}
-
-
 # *********************************************************************
 # Check if $1 is a vilid number, such as 3, 18.5, 0.0
 # *********************************************************************
@@ -37,10 +16,10 @@ is_number(){
 # *********************************************************************
 
 get_and_store_value(){
-	:> $1/$1_filter.txt
+	#:> $1/$1_filter.txt
 
-	for i in `cat $1/${1}_orig.txt`
-	do
+	#for i in `cat $1/${1}_orig.txt`
+	#do
 		DATE=inv_date;
 		CODE=inv_code;
 		NAME=inv_name;
@@ -48,8 +27,8 @@ get_and_store_value(){
 		MAX=inv_max;
 		MIN=inv_min;
 		OPEN=inv_open;
-		DATE=`echo $i | awk -F ',' '{print $1}'`
-		SEC=`echo $i | awk -F"[']" '{print $2}'`
+		DATE=`echo $2 | awk -F ',' '{print $1}'`
+		SEC=`echo $2 | awk -F"[']" '{print $2}'`
 
 		CODE=`echo $SEC | awk -F"[,]" '{print $1}'`
 		NAME=`echo $SEC | awk -F"[,]" '{print $2}'`
@@ -95,15 +74,7 @@ get_and_store_value(){
 				fi
 			fi
 		fi
-	done
+	#done
 }
 
-main() {
-	for i in `cat $STOCK_FILE`
-	do
-		get_history_data $i
-		get_and_store_value $i
-	done
-}
-
-main
+get_and_store_value $1 $2
