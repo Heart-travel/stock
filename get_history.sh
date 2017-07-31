@@ -1,6 +1,7 @@
 #!/bin/bash
 
 STOCK_FILE=./stock.txt
+PWD=`pwd`
 
 # *********************************************************************
 # Get all the history data of $1, include max_value, min_value, 
@@ -104,8 +105,11 @@ main() {
 		get_history_data $i
 		for j in `cat $i/${i}_orig.txt`
 		do
+			cd $PWD
 			./filter_min_open.sh $i $j
 		done
+		cd $PWD
+		./probable.sh $i
 	done
 }
 
