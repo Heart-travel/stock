@@ -12,11 +12,11 @@ is_number(){
 # *********************************************************************
 # 1. Get all the detail number of the history data of $1
 # 2. Filter the day when the min_value equals the open_value, and store
-# the data into the file $1_filter.txt
+# the data into the file ${1}_rush.txt
 # *********************************************************************
 
 get_and_store_value(){
-	#:> $1/$1_filter.txt
+	#:> $1/${1}_rush.txt
 
 	#for i in `cat $1/${1}_orig.txt`
 	#do
@@ -70,7 +70,7 @@ get_and_store_value(){
 
 			if [ $VALID -eq 4 ]; then
 				if [ $OPEN = $MIN -a $OPEN != 0.0 ]; then
-					echo $DATE $CLOSE $MAX $MIN $OPEN | grep ^[0-5] | tee -a $1/${1}_filter.txt
+					echo $DATE $CLOSE $MAX $MIN $OPEN | grep ^[0-5] | tee -a $1/${1}_rush.txt
 				fi
 			fi
 		fi

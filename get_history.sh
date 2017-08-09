@@ -34,11 +34,11 @@ get_history_data(){
 # *********************************************************************
 # 1. Get all the detail number of the history data of $1
 # 2. Filter the day when the min_value equals the open_value, and store
-# the data into the file $1_filter.txt
+# the data into the file ${1}_rush.txt
 # *********************************************************************
 
 #get_and_store_value(){
-#	:> $1/$1_filter.txt
+#	:> $1/$1_rush.txt
 #
 #	for i in `cat $1/${1}_orig.txt`
 #	do
@@ -92,7 +92,7 @@ get_history_data(){
 #
 #			if [ $VALID -eq 4 ]; then
 #				if [ $OPEN = $MIN -a $OPEN != 0.0 ]; then
-#					echo $DATE $CLOSE $MAX $MIN $OPEN | grep ^[0-5] | tee -a $1/${1}_filter.txt
+#					echo $DATE $CLOSE $MAX $MIN $OPEN | grep ^[0-5] | tee -a $1/${1}_rush.txt
 #				fi
 #			fi
 #		fi
@@ -106,7 +106,7 @@ main() {
 		for j in `cat $i/${i}_orig.txt`
 		do
 			cd $PWD
-			./filter_min_open.sh $i $j
+			./filter_rush.sh $i $j
 		done
 		cd $PWD
 		./probable.sh $i

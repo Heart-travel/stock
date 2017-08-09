@@ -25,7 +25,7 @@ calculate() {
 		YES_CLOSE=$TODAY_CLOSE
 		TOTAL=`expr ${TOTAL} + 1`
 		printf "%s %8s %8s\n" $DATE $TODAY_CLOSE $VAR | tee -a $1/${1}_cal.txt
-	done < $1/$1_filter.txt
+	done < $1/${1}_rush.txt
 	echo up=$UP total=$TOTAL
 	PROBABLE=`echo "scale=3;($UP/$TOTAL)*100"|bc`
 	printf "result: %.2f%%\n" $PROBABLE
