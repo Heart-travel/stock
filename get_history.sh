@@ -106,10 +106,10 @@ main() {
 		for j in `cat $i/${i}_orig.txt`
 		do
 			cd $PWD
-			./filter_rush.sh $i $j
+			./_filter_rush.sh $i $j
 		done
 		cd $PWD
-		./probable.sh $i
+		./_probable.sh $i
 	done
 }
 
