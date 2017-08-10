@@ -72,6 +72,8 @@ get_and_store_value(){
 				if [ $OPEN = $MIN -a $OPEN != 0.0 ]; then
 					echo $DATE $CLOSE $MAX $MIN $OPEN | grep ^[0-5] | tee -a $1/${1}_rush.txt
 				fi
+
+				echo $DATE $CLOSE | grep ^[0-5] | tee -a ${1}/${1}_pic.txt
 			fi
 		fi
 	#done
