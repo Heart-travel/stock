@@ -2,7 +2,8 @@
 
 for stock in `cat stock.txt`
 do
-	#for current in `cat ${stock}/${stock}_rush.txt`
+	:> ${stock}/${stock}_rush_in_7_days.txt
+
 	while read line
 	do
 		DATE=`echo ${line} | awk '{print $1}'`
