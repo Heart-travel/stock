@@ -1,5 +1,11 @@
 #!/bin/bash
 
+ROOT=/home/CORPUSERS/xp019326/source/stock/auto-script
+DATA=${ROOT}/data
+RESULT=${ROOT}/result
+SCRIPTS=${ROOT}/scripts
+STOCK_FILE=${ROOT}/source/stock.txt
+
 # *********************************************************************
 # Check if $1 is a vilid number, such as 3, 18.5, 0.0
 # *********************************************************************
@@ -17,7 +23,7 @@ is_number(){
 
 get_and_store_value(){
 	FLAG=0
-	#:> ${1}/${1}_rush.txt
+	#:> ${DATA}/${1}/${1}_rush.txt
 
 	DATE=inv_date;
 	CODE=inv_code;
@@ -69,11 +75,11 @@ get_and_store_value(){
 
 		if [ $VALID -eq 4 ]; then
 			if [ $OPEN = $MIN -a $OPEN != 0.0 ]; then
-				echo $DATE $CLOSE $MAX $MIN $OPEN | grep ^[0-5] | tee -a $1/${1}_rush.txt
+				echo $DATE $CLOSE $MAX $MIN $OPEN | grep ^[0-5] | tee -a ${DATA}/$1/${1}_rush.txt
 				FLAG=1
 			fi
 
-			echo $DATE $CLOSE | grep ^[0-5] | tee -a ${1}/${1}_pic.txt
+			echo $DATE $CLOSE | grep ^[0-5] | tee -a ${DATA}/${1}/${1}_pic.txt
 		fi
 	fi
 	return ${FLAG}
