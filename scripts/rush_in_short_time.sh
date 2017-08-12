@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT=/home/CORPUSERS/xp019326/source/stock/auto-script
+ROOT=/home/pi/source/stock
 DATA=${ROOT}/data
 RESULT=${ROOT}/result
 SCRIPTS=${ROOT}/scripts
