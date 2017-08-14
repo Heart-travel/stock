@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT=/home/pi/source/stock
+ROOT=~/source/stock
 DATA=${ROOT}/data
 RESULT=${ROOT}/result
 SCRIPTS=${ROOT}/scripts
