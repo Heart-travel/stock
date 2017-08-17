@@ -24,7 +24,7 @@ update_data_today(){
 		TEMP=`cat ${line}/${line}_daily.txt`
 		if [ -n "$TEMP" ]; then
 			COMMITFLAG=1
-			cat ${TEMP} | tee -a ${line}/${line}_orig.txt
+			echo ${TEMP} | tee -a ${DATA}/${line}/${line}_orig.txt
 
 			# check if rush is happend, if happend, record it.
 			bash ${SCRIPTS}/_filter_rush.sh ${line} ${TEMP}
@@ -34,7 +34,7 @@ update_data_today(){
 		fi 
 	
 		#clean the useless files
-		rm -f ${line}/${line}_euc.txt ${line}/${line}_d_temp.txt ${line}/${line}_daily.txt
+		rm -f ${DATA}/${line}/${line}_euc.txt ${DATA}/${line}/${line}_d_temp.txt ${DATA}/${line}/${line}_daily.txt
 	done < ${STOCK_FILE}
 }
 
