@@ -32,7 +32,7 @@ do
 		fi
 
 		DIFF=`expr ${CURRENT_DATE} - ${LAST_RUSH_DATE}`
-		if [ "${DIFF}" -lt 4 ];then
+		if [ "${DIFF}" -lt 2 ];then
 			echo -ne "${STOCK}-\c" | tee -a ${RUSH_LATEST_FILE}
 		fi
 	fi
