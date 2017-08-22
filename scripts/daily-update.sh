@@ -6,6 +6,21 @@ RESULT=${ROOT}/result
 SCRIPTS=${ROOT}/scripts
 STOCK_FILE=${ROOT}/source/stock.txt
 COMMITFLAG=0
+CURRENT_DATE=`date +%Y%m%d`
+
+double_rush_in_7_days(){
+	LAST_RUSH_DATE=`tail -1 ${DATA}/${1}/${1}_rush.txt | awk '{print $1}'`
+	LAST_RUSH_DATE_LINE_NR=`grep -nr ${LAST_RUSH_DATE} ${DATA}/${1}/${1}_orig.txt | awk -F ":" '{print $1}'`
+
+	CURRENT_RUSH_LINE_NR=`grep -nr ${CURRENT_DATE} ${DATA}/${1}/${1}_orig.txt | awk -F ":" '{print $1}'`
+	if [ -n "${LAST_RUSH_DATE_LINE_NR}" -a -n "${CURRENT_RUSH_LINE_NR}" ]; then
+		DIFF=`expr ${CURRENT_RUSH_LINE_NR} - ${LAST_RUSH_DATE_LINE_NR}`
+		#echo ${DIFF}
+		if [ "${DIFF}" -lt 7 ];then
+			echo ${CURRENT_RUSH_LINE_NR} | tee -a ${DATA}/${1}/${1}_rush_in_7_days.txt
+		fi
+	fi
+}
 
 update_data_today(){
 	while read line
@@ -29,6 +44,10 @@ update_data_today(){
 			# check if rush is happend, if happend, record it.
 			bash ${SCRIPTS}/_filter_rush.sh ${line} ${TEMP}
 			if [ $? -eq 1 ]; then
+				# Check the previous rush date, if it occured in 7 days,
+				# then record this to the file rush_in_7_days.txt
+				double_rush_in_7_days ${line}
+
 				echo ${line} | tee -a ${RESULT}/rush.txt
 			fi
 		fi 
@@ -53,6 +72,7 @@ echo "      Today Rush numbers" | tee -a ${RESULT}/rush.txt
 echo "********************************" | tee -a ${RESULT}/rush.txt
 
 update_data_today;
+bash ${SCRIPTS}/rush_in_short_time.sh
 
 if [ "$COMMITFLAG" -eq 1 ];then
 		Commit;
