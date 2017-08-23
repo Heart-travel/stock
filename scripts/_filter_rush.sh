@@ -11,8 +11,8 @@ STOCK_FILE=${ROOT}/source/stock.txt
 # *********************************************************************
 
 is_number(){
-	echo $1 | sed 's/\.\|-\|+\|%\|\^//g'  | grep [^0-9] >/dev/null && FLAG=0 || FLAG=1
-	return $FLAG
+	echo $1 | sed 's/\.\|-\|+\|%\|\^//g'  | grep [^0-9] >/dev/null && FLAG_I=0 || FLAG_I=1
+	return ${FLAG_I}
 }
 
 # *********************************************************************

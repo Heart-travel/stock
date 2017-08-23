@@ -6,7 +6,7 @@ RESULT=${ROOT}/result
 SCRIPTS=${ROOT}/scripts
 STOCK_FILE=${ROOT}/source/stock.txt
 COMMITFLAG=0
-CURRENT_DATE=`date +%Y%m%d`
+CURRENT_DATE=`date +%Y-%m-%d`
 
 double_rush_in_7_days(){
 	LAST_RUSH_DATE=`tail -1 ${DATA}/${1}/${1}_rush.txt | awk '{print $1}'`
@@ -27,7 +27,7 @@ update_data_today(){
 	do
 		cd ${DATA}
 		DATE=`date +%Y%m%d`
-		curl http://quotes.money.163.com/service/chddata.html?code=${line}\&start=${DATE}\&end=${DATE} | tee ${line}/${line}_d_temp.txt
+		curl http://quotes.money.163.com/service/chddata.html?code=${line}\&start=${DATE}\&end=${DATE} | tee ${DATA}/${line}/${line}_d_temp.txt
 		tac ${line}/${line}_d_temp.txt | tee ${line}/${line}_euc.txt
 	
 		# Change the format of the data file from web
@@ -72,7 +72,7 @@ echo "      Today Rush numbers" | tee -a ${RESULT}/rush.txt
 echo "********************************" | tee -a ${RESULT}/rush.txt
 
 update_data_today;
-bash ${SCRIPTS}/rush_in_short_time.sh
+bash ${SCRIPTS}/get_rush_short_numbers.sh
 
 if [ "$COMMITFLAG" -eq 1 ];then
 		Commit;
