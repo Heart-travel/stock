@@ -26,8 +26,7 @@ update_data_today(){
 	while read line
 	do
 		cd ${DATA}
-		DATE_T=`date +%Y%m%d`
-		DATE=`expr ${DATE_T} - 1`
+		DATE=`date +%Y%m%d`
 		curl http://quotes.money.163.com/service/chddata.html?code=${line}\&start=${DATE}\&end=${DATE} | tee ${DATA}/${line}/${line}_d_temp.txt
 		tac ${line}/${line}_d_temp.txt | tee ${line}/${line}_euc.txt
 	
@@ -62,7 +61,7 @@ Commit(){
 	cd ${ROOT}
 	git add .
 	git commit -m ${DATE}
-	#git push origin master
+	git push origin master
 }
 
 
@@ -73,7 +72,7 @@ echo "      Today Rush numbers" | tee -a ${RESULT}/rush.txt
 echo "********************************" | tee -a ${RESULT}/rush.txt
 
 update_data_today;
-#bash ${SCRIPTS}/get_rush_short_numbers.sh
+bash ${SCRIPTS}/get_rush_short_numbers.sh
 
 if [ "$COMMITFLAG" -eq 1 ];then
 		Commit;
