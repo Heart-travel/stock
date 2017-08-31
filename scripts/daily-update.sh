@@ -27,7 +27,7 @@ update_data_today(){
 	do
 		cd ${DATA}
 		DATE_T=`date +%Y%m%d`
-		DATE=`expr ${DATE_T} - 6`
+		DATE=`expr ${DATE_T} - 3`
 		curl http://quotes.money.163.com/service/chddata.html?code=${line}\&start=${DATE}\&end=${DATE} | tee ${DATA}/${line}/${line}_d_temp.txt
 		tac ${line}/${line}_d_temp.txt | tee ${line}/${line}_euc.txt
 	
@@ -62,7 +62,7 @@ Commit(){
 	cd ${ROOT}
 	git add .
 	git commit -m ${DATE}
-	git push origin master
+	#git push origin master
 }
 
 
