@@ -26,8 +26,7 @@ update_data_today(){
 	while read line
 	do
 		cd ${DATA}
-		DATE_T=`date +%Y%m%d`
-		DATE=`expr ${DATE_T} - 4`
+		DATE=`date +%Y%m%d`
 		curl http://quotes.money.163.com/service/chddata.html?code=${line}\&start=${DATE}\&end=${DATE} | tee ${DATA}/${line}/${line}_d_temp.txt
 		tac ${DATA}/${line}/${line}_d_temp.txt | tee ${line}/${line}_euc.txt
 	
