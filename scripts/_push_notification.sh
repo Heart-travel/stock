@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT=~/source/stock
+ROOT=~/Sources/stock
 DATA=${ROOT}/data
 RESULT=${ROOT}/result
 CURRENT_DATE=`date +%Y%m%d`
