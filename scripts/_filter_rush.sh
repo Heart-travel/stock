@@ -23,7 +23,9 @@ is_number(){
 
 get_and_store_value(){
 	FLAG=0
-	#:> ${DATA}/${1}/${1}_rush.txt
+	if [ ${3}x == 'Y'x ]; then
+		cat /dev/null > ${DATA}/${1}/${1}_rush.txt
+	fi
 
 	DATE=inv_date;
 	CODE=inv_code;
@@ -85,4 +87,4 @@ get_and_store_value(){
 	return ${FLAG}
 }
 
-get_and_store_value $1 $2
+get_and_store_value $1 $2 $3

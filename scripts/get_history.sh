@@ -15,6 +15,12 @@ PWD=`pwd`
 get_history_data(){
 	cd ${DATA}
 	mkdir ${1}
+	cat /dev/null > ${1}/${1}_temp.txt
+	cat /dev/null > ${1}/${1}_euc.txt
+	cat /dev/null > ${1}/${1}_orig.txt
+	cat /dev/null > ${DATA}/${1}/${1}_rush.txt
+	cat /dev/null > ${DATA}/${1}/${1}_pic.txt
+	cat /dev/null > ${DATA}/${1}/${1}_cal.txt
 	curl http://quotes.money.163.com/service/chddata.html?code=$1 | tee ${1}/${1}_temp.txt
 	tac ${1}/${1}_temp.txt | tee ${1}/${1}_euc.txt
 

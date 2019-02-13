@@ -12,7 +12,7 @@ TOTAL=0
 UP=0
 
 calculate() {
-	:> ${DATA}/${1}/${1}_cal.txt
+	cat /dev/null > ${DATA}/${1}/${1}_cal.txt
 	while read line
 	do
 		#echo $line
