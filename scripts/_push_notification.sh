@@ -1,10 +1,6 @@
 #!/bin/bash
 
-ROOT=~/Sources/stock
-DATA=${ROOT}/data
-RESULT=${ROOT}/result
-CURRENT_DATE=`date +%Y%m%d`
-SOURCE=${RESULT}/rush_latest_${CURRENT_DATE}.txt
+source path.sh
 
 numbers=`cat ${SOURCE}`
 #while read line

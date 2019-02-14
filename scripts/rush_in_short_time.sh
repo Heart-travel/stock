@@ -1,10 +1,6 @@
 #!/bin/bash
 
-ROOT=~/Sources/stock
-DATA=${ROOT}/data
-RESULT=${ROOT}/result
-SCRIPTS=${ROOT}/scripts
-STOCK_FILE=${ROOT}/source/stock.txt
+source path.sh
 
 for stock in `cat ${STOCK_FILE}`
 do

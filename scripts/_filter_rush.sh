@@ -1,10 +1,6 @@
 #!/bin/bash
 
-ROOT=~/Sources/stock
-DATA=${ROOT}/data
-RESULT=${ROOT}/result
-SCRIPTS=${ROOT}/scripts
-STOCK_FILE=${ROOT}/source/stock.txt
+source path.sh
 
 # *********************************************************************
 # Check if $1 is a vilid number, such as 3, 18.5, 0.0

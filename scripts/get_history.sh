@@ -1,11 +1,6 @@
 #!/bin/bash
 
-ROOT=~/Sources/stock
-DATA=${ROOT}/data
-RESULT=${ROOT}/result
-SCRIPTS=${ROOT}/scripts
-STOCK_FILE=${ROOT}/source/stock.txt
-PWD=`pwd`
+source path.sh
 
 # *********************************************************************
 # Get all the history data of $1, include max_value, min_value, 

@@ -1,10 +1,6 @@
 #!/bin/bash
 
-ROOT=~/Sources/stock
-DATA=${ROOT}/data
-RESULT=${ROOT}/result
-SCRIPTS=${ROOT}/scripts
-STOCK_FILE=${ROOT}/source/stock.txt
+source path.sh
 COMMITFLAG=0
 CURRENT_DATE=`date +%Y-%m-%d`
 

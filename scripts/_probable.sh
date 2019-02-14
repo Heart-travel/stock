@@ -1,10 +1,6 @@
 #!/bin/bash
 
-ROOT=~/Sources/stock
-DATA=${ROOT}/data
-RESULT=${ROOT}/result
-SCRIPTS=${ROOT}/scripts
-STOCK_FILE=${ROOT}/source/stock.txt
+source path.sh
 
 YES_CLOSE=0
 TODAY_CLOSE=0
